@@ -3,12 +3,14 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { setLogin } from '../../../slices/loginSlice.js';
 import FormField from './FormField.jsx';
 
 const LoginForm = () => {
   const loginRef = useRef();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     loginRef.current.focus();
@@ -25,6 +27,8 @@ const LoginForm = () => {
     }),
     onSubmit: ({ login }) => {
       dispatch(setLogin(login));
+      localStorage.setItem('login', login);
+      navigate('/profile');
     },
     validateOnMount: true,
   });
@@ -41,7 +45,7 @@ const LoginForm = () => {
           key={field}
         />
       ))}
-      <Button className="mt-1" type="submit" disabled={Object.values(formik.errors).length > 0}>Confirm</Button>
+      <Button className="mt-1" type="submit" disabled={Object.values(formik.errors).length > 0}>Log In</Button>
     </Form>
   );
 };
