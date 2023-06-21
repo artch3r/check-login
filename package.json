@@ -1,0 +1,13 @@
+{
+  "name": "check-login",
+  "version": "1.0.0",
+  "description": "test assignment with login verigication",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "cd frontend && npm ci",
+    "build": "cd frontend && npm run build",
+    "start": "cd frontend && npm run start"
+  },
+  "author": "artch3r",
+  "license": "ISC"
+}
