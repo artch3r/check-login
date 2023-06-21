@@ -4,6 +4,8 @@ import {
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useRef, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setLogin } from '../../slices/loginSlice.js';
 
 const FormField = ({ type, formik, loginRef }) => (
   <Form.Group className="mb-2 position-relative d-flex flex-column">
@@ -26,6 +28,7 @@ const FormField = ({ type, formik, loginRef }) => (
 
 const MainPage = () => {
   const loginRef = useRef();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     loginRef.current.focus();
@@ -40,9 +43,8 @@ const MainPage = () => {
       login: yup.string().required('required field').matches(/^developer21$/, 'incorrect login').trim(),
       password: yup.string().required('required field').matches(/^123456$/, 'incorrect password').trim(),
     }),
-    onSubmit: ({ login, password }) => {
-      console.log('login', login);
-      console.log('password', password);
+    onSubmit: ({ login }) => {
+      dispatch(setLogin(login));
     },
     validateOnMount: true,
   });
