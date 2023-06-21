@@ -1,11 +1,7 @@
-import { Container } from 'react-bootstrap';
+import MainPage from './components/MainPage/MainPage';
 
 const App = () => (
-  <Container className="vh-100 vw-100 bg-light">
-    <div className="text-center">
-      Hello World!
-    </div>
-  </Container>
+  <MainPage />
 );
 
 export default App;
